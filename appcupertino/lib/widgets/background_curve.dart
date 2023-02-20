@@ -2,33 +2,25 @@ import 'package:flutter/material.dart';
 
 import '../const/colors.dart';
 
-class BackgroundCurve extends StatelessWidget {
-  final Widget child;
-  const BackgroundCurve({super.key, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-      width: double.infinity,
-      height: double.infinity,
-      child: Fondo(),
-    );
-  }
-}
-
 class Fondo extends StatelessWidget {
-  const Fondo({super.key});
+  final Widget child;
+  const Fondo({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: CustomPaint(
-          painter: _FondoPainter(),
+    return Stack(
+      children: [
+        SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: CustomPaint(
+            painter: _FondoPainter(),
+          ),
         ),
-      ),
+        Align(
+          child: child,
+        ),
+      ],
     );
   }
 }
@@ -41,7 +33,7 @@ class _FondoPainter extends CustomPainter {
     //propiedades del lapiz
     paint.color = ColorsMyApp.secondarycolor;
     paint.style = PaintingStyle.fill;
-    paint.strokeWidth = 20;
+    paint.strokeWidth = 15;
 
     final path = Path();
     //Drawing a path top.
