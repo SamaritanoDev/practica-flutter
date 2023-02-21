@@ -43,7 +43,7 @@ class _FondoPainter extends CustomPainter {
     path.quadraticBezierTo(size.width * 0.42, size.height * 0.08,
         size.width * 0.50, size.height * 0.12);
     path.quadraticBezierTo(
-        size.width * 0.75, size.height * 0.25, size.width, size.height * 0.12);
+        size.width * 0.75, size.height * 0.25, size.width, size.height * 0.05);
     path.lineTo(size.width, 0);
 
     /// Drawing a path bottom.

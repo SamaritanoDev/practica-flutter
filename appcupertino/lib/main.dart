@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: ColorsMyApp.secondarycolor),
-      home: const LoginScreen(),
+      home: const LoadingScreen(),
     );
   }
 }
