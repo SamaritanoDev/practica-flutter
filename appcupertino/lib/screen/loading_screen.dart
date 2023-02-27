@@ -1,10 +1,25 @@
+import 'package:appcupertino/screen/screens.dart';
 import 'package:appcupertino/widgets/background_curve.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:async';
 import '../const/colors.dart';
 
-class LoadingScreen extends StatelessWidget {
+class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
+
+  @override
+  State<LoadingScreen> createState() => _LoadingScreenState();
+}
+
+class _LoadingScreenState extends State<LoadingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        const Duration(seconds: 11),
+        () => Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const RegisterScreen())));
+  }
 
   @override
   Widget build(BuildContext context) {

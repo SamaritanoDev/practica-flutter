@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../widgets/widgets.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 10),
               Text(
-                'Iniciar sesión',
+                'Registrarse',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 10),

@@ -17,8 +17,20 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Hola mundo',
       theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: ColorsMyApp.secondarycolor),
+        useMaterial3: true,
+        colorScheme: const ColorScheme(
+            brightness: Brightness.dark,
+            primary: ColorsMyApp.secondarycolor,
+            onPrimary: ColorsMyApp.optionalcolor,
+            secondary: ColorsMyApp.primarycolor,
+            onSecondary: ColorsMyApp.tertiarycolor,
+            error: ColorsMyApp.errorcolor,
+            onError: ColorsMyApp.onErrorcolor,
+            background: ColorsMyApp.backgroundcolor,
+            onBackground: ColorsMyApp.onbackgroundcolor,
+            surface: ColorsMyApp.surfacecolor,
+            onSurface: ColorsMyApp.onsurfacecolor),
+      ),
       home: const LoadingScreen(),
     );
   }
