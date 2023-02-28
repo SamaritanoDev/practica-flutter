@@ -1,6 +1,5 @@
 import 'package:appcupertino/screen/screens.dart';
 import 'package:flutter/material.dart';
-
 import 'const/colors.dart';
 
 void main() {
@@ -16,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Hola mundo',
+      initialRoute: 'splash',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: const ColorScheme(
@@ -31,7 +31,11 @@ class MyApp extends StatelessWidget {
             surface: ColorsMyApp.surfacecolor,
             onSurface: ColorsMyApp.onsurfacecolor),
       ),
-      home: const LoadingScreen(),
+      routes: {
+        'splash': (context) => const LoadingScreen(),
+        'login': (context) => const RegisterScreen(),
+        'register': (context) => const LoginScreen(),
+      },
     );
   }
 }

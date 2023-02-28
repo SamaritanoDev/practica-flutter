@@ -1,3 +1,4 @@
+import 'package:appcupertino/const/colors.dart';
 import 'package:flutter/material.dart';
 
 class InputDecorations {
@@ -8,14 +9,14 @@ class InputDecorations {
   }) {
     return InputDecoration(
       labelText: labelText,
-      labelStyle: const TextStyle(color: Colors.grey),
-      prefixIcon: prefixIcon != null
-          ? Icon(prefixIcon, color: const Color(0XFF5A3761))
-          : null,
-      enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Color(0XFF5A3761))),
-      focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Color(0XFF5A3761), width: 2)),
+      enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: ColorsMyApp.secondarycolor)),
+      focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+              style: BorderStyle.solid,
+              strokeAlign: BorderSide.strokeAlignCenter,
+              color: ColorsMyApp.primarycolor,
+              width: 2)),
       hintText: hintText,
     );
   }

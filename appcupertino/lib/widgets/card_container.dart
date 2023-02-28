@@ -12,7 +12,7 @@ class CardContainer extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           width: double.infinity,
-          height: 200,
+          height: 400,
           decoration: _createCardShape(),
           child: child,
         ),
@@ -22,7 +22,7 @@ class CardContainer extends StatelessWidget {
 
   BoxDecoration _createCardShape() => BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: const [
             BoxShadow(
               color: Colors.black12,

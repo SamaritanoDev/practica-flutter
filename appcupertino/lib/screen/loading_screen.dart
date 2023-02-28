@@ -16,7 +16,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     Timer(
-        const Duration(seconds: 11),
+        const Duration(seconds: 4),
         () => Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const RegisterScreen())));
   }

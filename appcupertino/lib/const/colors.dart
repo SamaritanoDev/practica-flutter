@@ -8,8 +8,8 @@ class ColorsMyApp {
   static const notavailablecolor = Color(0xFFef5350);
   static const errorcolor = Color(0xffef081f);
   static const onErrorcolor = Color(0xffd1265c);
-  static const backgroundcolor = Color(0xffebcef6);
+  static const backgroundcolor = Color.fromARGB(255, 255, 255, 255);
   static const onbackgroundcolor = Color(0xffdb68d9);
   static const surfacecolor = Color(0xff0bfcdc);
-  static const onsurfacecolor = Color(0xff381354);
+  static const onsurfacecolor = Color(0xff02ffbf);
 }
