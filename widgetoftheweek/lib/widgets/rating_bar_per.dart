@@ -33,7 +33,22 @@ class RaBar extends StatelessWidget {
                 print(rating);
               },
             ),
-            
+            RatingBar.builder(
+              glow: false,
+              initialRating: 3,
+              minRating: 1,
+              direction: Axis.horizontal,
+              allowHalfRating: true,
+              itemCount: 5,
+              itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) => const Icon(
+                Icons.heart_broken_rounded,
+                color: Colors.red,
+              ),
+              onRatingUpdate: (rating) {
+                print(rating);
+              },
+            )
           ],
         ),
       ),
