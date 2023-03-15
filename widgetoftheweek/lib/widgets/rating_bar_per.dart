@@ -7,6 +7,7 @@ class RaBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.purpleAccent[100],
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -19,22 +20,25 @@ class RaBar extends StatelessWidget {
               ratingWidget: RatingWidget(
                   full: const Icon(
                     Icons.star,
-                    color: Colors.amber,
+                    color: Colors.cyanAccent,
                   ),
                   half: const Icon(
                     Icons.star,
-                    color: Colors.amber,
+                    color: Colors.cyan,
                   ),
                   empty: const Icon(
                     Icons.star,
-                    color: Colors.grey,
+                    color: Colors.white,
                   )),
               onRatingUpdate: (rating) {
                 print(rating);
               },
             ),
+            const SizedBox(
+              height: 5,
+            ),
             RatingBar.builder(
-              glow: false,
+              glow: true,
               initialRating: 3,
               minRating: 1,
               direction: Axis.horizontal,
@@ -43,7 +47,7 @@ class RaBar extends StatelessWidget {
               itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
               itemBuilder: (context, _) => const Icon(
                 Icons.heart_broken_rounded,
-                color: Colors.red,
+                color: Colors.pink,
               ),
               onRatingUpdate: (rating) {
                 print(rating);
