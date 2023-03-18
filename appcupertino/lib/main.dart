@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
         'splash': (context) => const LoadingScreen(),
         'login': (context) => const RegisterScreen(),
         'register': (context) => const LoginScreen(),
+        'home': (context) => const Home(),
       },
     );
   }

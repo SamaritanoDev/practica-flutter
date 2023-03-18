@@ -14,7 +14,7 @@ class RegisterScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(20),
             width: double.infinity,
-            height: 400,
+            height: 450,
             child: Column(
               children: [
                 Text(
@@ -85,7 +85,7 @@ class _RegisterForm extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: 20),
           ElevatedButton(
               onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
               child: const Text(

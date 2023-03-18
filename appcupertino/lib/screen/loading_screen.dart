@@ -17,8 +17,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
     super.initState();
     Timer(
         const Duration(seconds: 4),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const RegisterScreen())));
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Home())));
   }
 
   @override
@@ -28,7 +28,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         body: Fondo(
           child: Center(
               child: SizedBox(
-            height: 300,
+            height: 400,
             child: Column(
               children: const [
                 ImagenLoadin(),
