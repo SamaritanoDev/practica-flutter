@@ -1,6 +1,6 @@
+import 'package:appcupertino/config/theme/app_theme.dart';
 import 'package:appcupertino/screen/screens.dart';
 import 'package:flutter/material.dart';
-import 'const/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,21 +16,22 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Hola mundo',
       initialRoute: 'splash',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: const ColorScheme(
-            brightness: Brightness.dark,
-            primary: ColorsMyApp.secondarycolor,
-            onPrimary: ColorsMyApp.optionalcolor,
-            secondary: ColorsMyApp.primarycolor,
-            onSecondary: ColorsMyApp.tertiarycolor,
-            error: ColorsMyApp.errorcolor,
-            onError: ColorsMyApp.onErrorcolor,
-            background: ColorsMyApp.backgroundcolor,
-            onBackground: ColorsMyApp.onbackgroundcolor,
-            surface: ColorsMyApp.surfacecolor,
-            onSurface: ColorsMyApp.onsurfacecolor),
-      ),
+      // theme: ThemeData(
+      //   useMaterial3: true,
+      //   colorScheme: const ColorScheme(
+      //       brightness: Brightness.dark,
+      //       primary: ColorsMyApp.secondarycolor,
+      //       onPrimary: ColorsMyApp.optionalcolor,
+      //       secondary: ColorsMyApp.primarycolor,
+      //       onSecondary: ColorsMyApp.tertiarycolor,
+      //       error: ColorsMyApp.errorcolor,
+      //       onError: ColorsMyApp.onErrorcolor,
+      //       background: ColorsMyApp.backgroundcolor,
+      //       onBackground: ColorsMyApp.onbackgroundcolor,
+      //       surface: ColorsMyApp.surfacecolor,
+      //       onSurface: ColorsMyApp.onsurfacecolor),
+      // ),
+      theme: AppTheme(selectedColor: 1).getMyTheme(),
       routes: {
         'splash': (context) => const LoadingScreen(),
         'login': (context) => const RegisterScreen(),
