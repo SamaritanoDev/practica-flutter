@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import '../const/colors.dart';
-import '../widgets/widgets.dart';
+import '../../const/colors.dart';
+import '../../widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

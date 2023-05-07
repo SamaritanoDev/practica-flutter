@@ -1,8 +1,8 @@
-import 'package:appcupertino/screen/screens.dart';
+import 'package:appcupertino/presentation/screen/screens.dart';
 import 'package:appcupertino/widgets/background_curve.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../const/colors.dart';
+import '../../const/colors.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});

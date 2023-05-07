@@ -1,5 +1,5 @@
 import 'package:appcupertino/config/theme/app_theme.dart';
-import 'package:appcupertino/screen/screens.dart';
+import 'package:appcupertino/presentation/screen/screens.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       //       surface: ColorsMyApp.surfacecolor,
       //       onSurface: ColorsMyApp.onsurfacecolor),
       // ),
-      theme: AppTheme(selectedColor: 1).getMyTheme(),
+      theme: AppTheme(selectedColor: 3).getMyTheme(),
       routes: {
         'splash': (context) => const LoadingScreen(),
         'login': (context) => const RegisterScreen(),
