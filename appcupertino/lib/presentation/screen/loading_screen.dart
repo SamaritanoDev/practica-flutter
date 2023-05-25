@@ -5,6 +5,8 @@ import 'dart:async';
 import '../../const/colors.dart';
 
 class LoadingScreen extends StatefulWidget {
+  static const String name = 'loading_screen';
+
   const LoadingScreen({super.key});
 
   @override
