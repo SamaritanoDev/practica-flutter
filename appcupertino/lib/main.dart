@@ -1,4 +1,6 @@
 import 'package:appcupertino/config/theme/app_theme.dart';
+import 'package:appcupertino/presentation/screen/buttons/buttons_screen.dart';
+import 'package:appcupertino/presentation/screen/cards/cards_screen.dart';
 import 'package:appcupertino/presentation/screen/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +38,9 @@ class MyApp extends StatelessWidget {
         'splash': (context) => const LoadingScreen(),
         'login': (context) => const RegisterScreen(),
         'register': (context) => const LoginScreen(),
-        'home': (context) => const Home(),
+        'home': (context) => const HomeScreen(),
+        '/buttons': (context) => const ButtonsScreen(),
+        '/cards': (context) => const CardsScreen(),
       },
     );
   }

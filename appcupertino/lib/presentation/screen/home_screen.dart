@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../config/menu/menu_item.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +51,8 @@ class _CustomListTile extends StatelessWidget {
       title: Text(menuItem.title),
       subtitle: Text(menuItem.subTitle),
       trailing: Icon(Icons.arrow_forward_ios_rounded, color: color.primary),
-      onTap: (){
-        // TODO: navegar a otra pantalla
+      onTap: () {
+        Navigator.pushNamed(context, menuItem.link);
       },
     );
   }
