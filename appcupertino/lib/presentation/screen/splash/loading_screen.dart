@@ -1,8 +1,8 @@
-import 'package:appcupertino/presentation/screen/screens.dart';
+import 'package:appcupertino/config/router/app_router.dart';
 import 'package:appcupertino/widgets/background_curve.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../../const/colors.dart';
+import '../../../const/colors.dart';
 
 class LoadingScreen extends StatefulWidget {
   static const String name = 'loading_screen';
@@ -17,8 +17,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 4),
-        () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen())));
+    Timer(const Duration(seconds: 4), () => appRouter.go('/home'));
   }
 
   @override
