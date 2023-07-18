@@ -17,7 +17,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 4), () => appRouter.go('/home'));
+    Timer(const Duration(seconds: 4), () => appRouter.go('/login_screen'));
   }
 
   @override

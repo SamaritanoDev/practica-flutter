@@ -54,8 +54,7 @@ class _RegisterForm extends StatelessWidget {
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecorations.authInputDecoration(
-                hintText: 'samaritanodev@gmail.com',
-                labelText: 'Correo electrónico'),
+                hintText: 'samaritanodev@gmail.com', labelText: 'Correo electrónico'),
 
             onChanged: (value) => value,
             //validation
@@ -63,9 +62,7 @@ class _RegisterForm extends StatelessWidget {
               String pattern =
                   r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
               RegExp regExp = RegExp(pattern);
-              return regExp.hasMatch(value ?? '')
-                  ? null
-                  : 'El valor ingresado no puede ser un correo';
+              return regExp.hasMatch(value ?? '') ? null : 'El valor ingresado no puede ser un correo';
             },
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
@@ -75,8 +72,7 @@ class _RegisterForm extends StatelessWidget {
               autocorrect: false,
               obscureText: true,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecorations.authInputDecoration(
-                  hintText: '*****', labelText: 'Contraseña'),
+              decoration: InputDecorations.authInputDecoration(hintText: '*****', labelText: 'Contraseña'),
               onChanged: (value) => value,
               //validation
               validator: (value) {

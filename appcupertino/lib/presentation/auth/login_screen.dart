@@ -1,8 +1,10 @@
+import 'package:appcupertino/config/router/app_router.dart';
 import 'package:flutter/material.dart';
 import '../../const/colors.dart';
 import '../../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const String name = 'login_screen';
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -48,8 +50,7 @@ class _LoginForm extends StatelessWidget {
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecorations.authInputDecoration(
-                hintText: 'samaritanodev@gmail.com',
-                labelText: 'Correo electrónico'),
+                hintText: 'samaritanodev@gmail.com', labelText: 'Correo electrónico'),
 
             onChanged: (value) => value,
             //validation
@@ -57,9 +58,7 @@ class _LoginForm extends StatelessWidget {
               String pattern =
                   r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
               RegExp regExp = RegExp(pattern);
-              return regExp.hasMatch(value ?? '')
-                  ? null
-                  : 'El valor ingresado no puede ser un correo';
+              return regExp.hasMatch(value ?? '') ? null : 'El valor ingresado puede no ser un correo';
             },
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
@@ -69,9 +68,7 @@ class _LoginForm extends StatelessWidget {
               autocorrect: false,
               obscureText: true,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecorations.authInputDecoration(
-                  hintText: '*****',
-                  labelText: 'Contraseña'),
+              decoration: InputDecorations.authInputDecoration(hintText: '*****', labelText: 'Contraseña'),
               onChanged: (value) => value,
               //validation
               validator: (value) {
@@ -86,10 +83,11 @@ class _LoginForm extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             elevation: 0,
-            color: ColorsMyApp.primarycolor,
+            color: ColorsMyApp.secondarycolor,
             onPressed: () {
-              Navigator.pushReplacementNamed(context, 'login');
+              appRouter.go('/home');
             },
+            child: const Text("Ingresar"),
           ),
         ],
       ),

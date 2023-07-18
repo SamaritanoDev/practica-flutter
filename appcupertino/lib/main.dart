@@ -19,14 +19,6 @@ class MyApp extends StatelessWidget {
       routerConfig: appRouter,
       // initialRoute: 'splash',
       theme: AppTheme(selectedColor: 3).getMyTheme(),
-      // routes: {
-      //   'splash': (context) => const LoadingScreen(),
-      //   'login': (context) => const RegisterScreen(),
-      //   'register': (context) => const LoginScreen(),
-      //   'home': (context) => const HomeScreen(),
-      //   '/buttons': (context) => const ButtonsScreen(),
-      //   '/cards': (context) => const CardsScreen(),
-      // },
     );
   }
 }

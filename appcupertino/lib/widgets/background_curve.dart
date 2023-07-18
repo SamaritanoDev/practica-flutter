@@ -30,7 +30,6 @@ class _FondoPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
 
-    //propiedades del lapiz
     paint.color = ColorsMyApp.secondarycolor;
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 15;
