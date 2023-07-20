@@ -1,4 +1,4 @@
-import 'package:app_makeup/presentation/splash.dart';
+import 'package:app_makeup/router/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,8 +10,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
       theme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.light,
         textButtonTheme: const TextButtonThemeData(
           style: ButtonStyle(
@@ -19,7 +21,6 @@ class MainApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SplashScreen(),
     );
   }
 }

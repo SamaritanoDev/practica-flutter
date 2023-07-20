@@ -5,6 +5,7 @@ import 'package:app_makeup/presentation/widgets/wallpaper_gradient.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
+  static const String name = 'loading_screen';
   const SplashScreen({super.key});
 
   @override
