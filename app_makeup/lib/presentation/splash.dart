@@ -3,6 +3,7 @@ import 'package:app_makeup/presentation/widgets/circle_media.dart';
 import 'package:app_makeup/presentation/widgets/custom_text_button.dart';
 import 'package:app_makeup/presentation/widgets/wallpaper_gradient.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatelessWidget {
   static const String name = 'loading_screen';
@@ -37,10 +38,14 @@ class SplashScreen extends StatelessWidget {
               const SizedBox(
                 height: 150,
               ),
-              const Column(
+              Column(
                 children: [
-                  _ImagesStack(),
-                  CustomTextButton(),
+                  const _ImagesStack(),
+                  CustomTextButton(
+                    onPressed: () {
+                      GoRouter.of(context).go('/home_screen');
+                    },
+                  ),
                 ],
               )
             ],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomTextButton extends StatelessWidget {
-  const CustomTextButton({super.key});
+  final VoidCallback onPressed;
+  const CustomTextButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,9 @@ class CustomTextButton extends StatelessWidget {
           width: 300,
           height: 70,
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              onPressed();
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
