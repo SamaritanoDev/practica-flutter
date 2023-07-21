@@ -13,6 +13,9 @@ class CustomTextButton extends StatelessWidget {
           width: 300,
           height: 70,
           child: TextButton(
+            style: const ButtonStyle(
+              overlayColor: MaterialStatePropertyAll(Colors.white),
+            ),
             onPressed: () {
               onPressed();
             },
@@ -21,10 +24,10 @@ class CustomTextButton extends StatelessWidget {
               children: [
                 Text(
                   'Get Started',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontFamily: 'sofiaRegular',
-                        fontSize: 30,
-                      ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontFamily: 'sofiaRegular', fontSize: 30, color: Colors.black),
                 ),
                 const Icon(
                   Icons.arrow_right_alt_outlined,

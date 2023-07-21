@@ -31,11 +31,11 @@ class _FoooterCircleinter extends CustomPainter {
       begin: Alignment.bottomLeft,
       end: Alignment.centerRight,
       colors: <Color>[
-        Color(0xfff9bf9a),
-        Color(0xfffbd4ba),
-        Color(0xfff9bf9a),
-        Color(0xfffbd4ba),
-        Color(0xfff9bf9a),
+        Color(0xfff4008b),
+        Color(0xfffff7ac4),
+        Color(0xfff4008b),
+        Color(0xfffff7ac4),
+        Color(0xfff4008b),
       ],
     );
     final paint = Paint()..shader = gradiente.createShader(rect);

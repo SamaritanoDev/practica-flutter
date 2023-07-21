@@ -17,26 +17,33 @@ class SplashScreen extends StatelessWidget {
           const WallpaperGradient(),
           const CircleMedia(),
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(height: 150),
               Text(
-                'Your Skin',
+                'Choose',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontFamily: 'sofiaRegular',
                       fontSize: 60,
                     ),
               ),
+              SizedBox(
+                height: 100,
+                child: Image.asset(
+                  logopath,
+                  fit: BoxFit.cover,
+                ),
+              ),
               Text(
-                'Breathe',
+                'outfit',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontFamily: 'sofiaRegular',
                       fontSize: 60,
                     ),
               ),
               const SizedBox(
-                height: 150,
+                height: 100,
               ),
               Column(
                 children: [

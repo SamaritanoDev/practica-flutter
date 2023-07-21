@@ -21,13 +21,18 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/barbie_mobile.png
+    - assets/images/barbie_web.png
+    - assets/images/barbie_uxui.png
+    - assets/images/barbie_data_science.png
+    - assets/images/barbie_gamer.png
 
   fonts:
     - family: sofiaRegular
       fonts:
       - asset: fonts/sofia/Sofia-Regular.ttf
 
-    - family: snigletRegular
+    - family: staatlichesRegular
       fonts:
-      - asset: fonts/sniglet/Sniglet-ExtraBold.ttf
+      - asset: fonts/staatliches/Staatliches-Regular.ttf
 

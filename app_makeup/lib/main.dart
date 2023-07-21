@@ -14,12 +14,10 @@ class MainApp extends StatelessWidget {
       routerConfig: appRouter,
       theme: ThemeData(
         useMaterial3: true,
-        brightness: Brightness.light,
-        textButtonTheme: const TextButtonThemeData(
-          style: ButtonStyle(
-            overlayColor: MaterialStatePropertyAll(Color(0xfffcd1b6)),
-          ),
+        colorScheme: const ColorScheme.light(
+          primary: Color(0xfff4008b),
         ),
+        brightness: Brightness.light,
       ),
     );
   }
