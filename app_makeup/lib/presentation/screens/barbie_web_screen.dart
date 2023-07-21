@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BarbieMobileScreen extends StatelessWidget {
-  static const String name = '/barbie_mobile_screen';
-  const BarbieMobileScreen({super.key});
+class BarbieWebScreen extends StatelessWidget {
+  static const String name = '/barbie_web_screen';
+  const BarbieWebScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class BarbieMobileScreen extends StatelessWidget {
         ),
       ),
       body: const Center(
-        child: Text('Hello Barbie mobile developer'),
+        child: Text('Hello Barbie web developer'),
       ),
     );
   }

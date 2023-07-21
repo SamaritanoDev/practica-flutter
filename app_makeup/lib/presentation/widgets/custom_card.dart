@@ -14,7 +14,6 @@ class CustomCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         GoRouter.of(context).go(barbie.routepage);
-        print(barbie.routepage);
       },
       child: Container(
         padding: const EdgeInsets.only(right: 8, left: 8, top: 0, bottom: 8),
@@ -37,6 +36,7 @@ class CustomCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontFamily: 'staatlichesRegular',
                       fontSize: 20,
+                      color: Colors.white,
                     ),
               )),
               const SizedBox(height: 10),
