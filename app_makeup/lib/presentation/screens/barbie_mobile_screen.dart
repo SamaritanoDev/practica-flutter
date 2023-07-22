@@ -1,3 +1,4 @@
+import 'package:app_makeup/presentation/widgets/vertical_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,8 +21,25 @@ class BarbieMobileScreen extends StatelessWidget {
           },
         ),
       ),
-      body: const Center(
-        child: Text('Hello Barbie mobile developer'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 50),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Outfit for Barbie\nMobile Developer',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontFamily: 'sofiaRegular',
+                      fontSize: 30,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+              ),
+            ],
+          ),
+          const VerticalSlider(),
+        ],
       ),
     );
   }
