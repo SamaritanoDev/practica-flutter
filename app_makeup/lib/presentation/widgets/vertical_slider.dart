@@ -17,6 +17,7 @@ class _VerticalSliderState extends State<VerticalSlider> {
     "https://i.pinimg.com/474x/68/14/08/681408963196aa90ba22d21f5f5bfea6.jpg",
     "https://i.pinimg.com/474x/1c/b8/db/1cb8db70f70a5eef7b1db6132ccb3127.jpg",
   ];
+  bool isFavorite = true;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +25,34 @@ class _VerticalSliderState extends State<VerticalSlider> {
       child: CardSwiper(
         cardBuilder: (context, index, percentThresholdX, percentThresholdY) {
           final imageUrl = imageUrls[index];
-          return Container(
-            alignment: Alignment.center,
-            width: 500,
-            height: 500,
-            padding: const EdgeInsets.all(8),
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-            ),
+          return Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 500,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(8),
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                alignment: const Alignment(0.5, -0.9),
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                    });
+                  },
+                  icon: Icon(
+                    isFavorite ? Icons.favorite_border : Icons.favorite,
+                    size: 60,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+            ],
           );
         },
         cardsCount: imageUrls.length,
