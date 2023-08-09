@@ -1,10 +1,10 @@
 import 'dart:html';
-
 import 'package:app_landing_vertical/ui/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:app_landing_vertical/config/config.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const String name = 'home_screen';
   const HomeScreen({super.key});
 
   @override
@@ -26,11 +26,26 @@ class _HomeBody extends StatelessWidget {
       onPageChanged: (index) {
         final newPath = appMenuItem[index].link;
         final newTitle = appMenuItem[index].title;
-        window.history.pushState(null, newTitle, newPath); // Actualizar la URL
+        window.history.pushState(null, newTitle, newPath);
       },
       itemBuilder: (context, index) {
-        return appMenuItem[index].index == 0 ? const HomeView() : const ContactView();
+        final menuItem = appMenuItem[index];
+        return _buildPage(menuItem.viewName);
       },
     );
+  }
+
+  Widget _buildPage(String viewName) {
+    switch (viewName) {
+      case HomeView.name:
+        return const HomeView();
+      case ContactView.name:
+        return const ContactView();
+      case LocationView.name:
+        return const LocationView();
+      // Agregar más casos aquí según sea necesario
+      default:
+        return const HomeView();
+    }
   }
 }

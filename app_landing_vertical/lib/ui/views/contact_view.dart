@@ -11,9 +11,18 @@ class ContactView extends StatelessWidget {
       child: const Center(
         child: FittedBox(
           fit: BoxFit.contain,
-          child: Text(
-            'Contact',
-            style: TextStyle(fontSize: 80, fontWeight: FontWeight.bold),
+          child: Column(
+            children: [
+              Text(
+                'Contact',
+                style: TextStyle(
+                  fontSize: 80,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              FlutterLogo()
+            ],
           ),
         ),
       ),
