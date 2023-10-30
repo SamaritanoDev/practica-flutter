@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.purple,
       ),
-      home: const RatingBarEmoji(),
+      home: const Scaffold(
+        body: RatingBarEmoji(),
+      ),
     );
   }
 }

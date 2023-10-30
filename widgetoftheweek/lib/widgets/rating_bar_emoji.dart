@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RatingBarEmoji extends StatelessWidget {
-  const RatingBarEmoji({super.key});
+  const RatingBarEmoji({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return RatingBar.builder(
+    return Center(
+      child: RatingBar.builder(
         initialRating: 3,
         itemCount: 5,
         itemBuilder: (context, index) {
@@ -36,11 +37,14 @@ class RatingBarEmoji extends StatelessWidget {
                 Icons.sentiment_very_satisfied,
                 color: Colors.green,
               );
+            default:
+              return Container(); // Valor predeterminado
           }
         },
         onRatingUpdate: (rating) {
           print(rating);
-        }
+        },
+      ),
     );
   }
 }
