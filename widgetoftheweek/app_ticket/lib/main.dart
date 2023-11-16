@@ -16,11 +16,6 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey globalKey = GlobalKey();
 
-    // Llamada a addPostFrameCallback
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      captureWidget(globalKey);
-    });
-
     return MaterialApp(
       home: Scaffold(
         body: Center(
