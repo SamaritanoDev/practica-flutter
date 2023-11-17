@@ -10,6 +10,7 @@ dependencies:
   file_cache_provider: ^1.0.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.3
   image_gallery_saver: ^2.0.3
   path_provider: ^2.1.1
 
