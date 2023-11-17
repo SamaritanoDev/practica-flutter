@@ -4,12 +4,12 @@ import 'package:app_ticket/pages/blocs/ticket/ticket_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FormCustom extends StatelessWidget {
-  const FormCustom({super.key});
+class FormPage extends StatelessWidget {
+  const FormPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final readTicketCubit = context.read<TicketCubit>();
+  final readTicketCubit = context.read<TicketCubit>();
     final textTheme = Theme.of(context).textTheme;
     TextEditingController codeController = TextEditingController();
 
@@ -88,7 +88,9 @@ class FormCustom extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                        onPressed: () {}, child: const Text('Generated')),
+                      onPressed: () {},
+                      child: const Text('Generated'),
+                    ),
                   ],
                 )
               ],
