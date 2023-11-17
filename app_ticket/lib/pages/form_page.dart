@@ -1,6 +1,7 @@
 import 'package:app_ticket/data/data.dart';
 import 'package:app_ticket/infrastructure/models/services.dart';
 import 'package:app_ticket/pages/blocs/ticket/ticket_cubit.dart';
+import 'package:app_ticket/pages/ticket_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,9 +10,10 @@ class FormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final readTicketCubit = context.read<TicketCubit>();
+    final readTicketCubit = context.read<TicketCubit>();
     final textTheme = Theme.of(context).textTheme;
     TextEditingController codeController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
 
     List<Services> servicios = serviciosData.map((data) {
       return Services.fromJsonMap(data);
@@ -27,6 +29,7 @@ class FormPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 TextFormField(
+                  controller: nameController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Client name',
@@ -77,7 +80,8 @@ class FormPage extends StatelessWidget {
                       color: Color(0xff04FFB0),
                     ),
                     Text(
-                      'Total amount: \$${state.selectedService.code.isNotEmpty ? state.selectedService.price : "Select a service"}',
+                      // ignore: unnecessary_null_comparison
+                      'Total amount: \$${state.selectedService != null ? state.selectedService.price : "Select a service"}',
                       style: textTheme.titleLarge
                           ?.copyWith(color: Colors.deepPurpleAccent),
                     ),
@@ -88,7 +92,38 @@ class FormPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        readTicketCubit.onGenerateTicket(
+                          nameController.text, // Nombre del cliente
+                          DateTime.now()
+                              .toString(), // Fecha de emisión (ajusta esto según sea necesario)
+                        );
+
+                        // Obtener el estado actual después de onGenerateTicket
+                        final currentState = readTicketCubit.state;
+
+                        // Verificar si el estado actual es TicketGenerated
+                        if (currentState is TicketGenerated) {
+                          print('Client Name: ${currentState.clientName}');
+                          print(
+                              'Code services: ${currentState.selectedService.code}');
+                          print(
+                              'Services: ${currentState.selectedService.name}');
+                          print('Date of Issue: ${currentState.dateOfIssue}');
+                          print(
+                              'Total amount: \$${currentState.selectedService.price}');
+                        }
+
+                        // Navegar a TicketPage
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider.value(
+                              value: readTicketCubit,
+                              child: TicketPage(ticketState: currentState),
+                            ),
+                          ),
+                        );
+                      },
                       child: const Text('Generated'),
                     ),
                   ],

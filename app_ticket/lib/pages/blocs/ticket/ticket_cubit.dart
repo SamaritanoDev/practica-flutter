@@ -14,21 +14,24 @@ class TicketCubit extends Cubit<TicketState> {
             selectedService: Services(
               code: '',
               name: '',
-              price: '',
+              price: 0.0,
             ),
           ),
         );
-
-  void onChangeCode(String value) {
-    emit(state.copyWhith(
-      code: value,
-    ));
-  }
 
   void onSelectService(Services service) {
     emit(state.copyWhith(
       selectedService: service,
     ));
+  }
+
+  void onGenerateTicket(String clientName, String dateOfIssue) {
+    emit(TicketGenerated(
+      clientName: clientName,
+      dateOfIssue: dateOfIssue,
+      selectedService: state.selectedService,
+    ));
+    // Resto de tu lógica para capturar y guardar la imagen
   }
 
   Future<void> captureWidget(GlobalKey globalKey) async {

@@ -21,7 +21,7 @@ class TicketState {
         selectedService = Services(
           code: '',
           name: '',
-          price: '',
+          price: 0.0,
         );
 
   TicketState copyWhith({
@@ -58,4 +58,24 @@ class TicketCaptureError extends TicketState {
 
   @override
   List<Object> get props => [message];
+}
+
+class TicketGenerated extends TicketState {
+  final String clientName;
+  final String dateOfIssue;
+  @override
+  final Services selectedService;
+
+  TicketGenerated({
+    required this.clientName,
+    required this.dateOfIssue,
+    required this.selectedService,
+
+    // Puedes agregar más propiedades según sea necesario
+    // Por ejemplo: final String selectedService;
+    // Y cualquier otra información que necesites mostrar en tu TicketPage
+  }) : super.empty();
+
+  @override
+  List<Object> get props => [clientName, dateOfIssue, selectedService];
 }

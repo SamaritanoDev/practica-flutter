@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      final GlobalKey globalKey = GlobalKey();
-     final ticketCubit = BlocProvider.of<TicketCubit>(context); //sin usar
      final readTicketCubit = context.read<TicketCubit>();
 
     return Scaffold(

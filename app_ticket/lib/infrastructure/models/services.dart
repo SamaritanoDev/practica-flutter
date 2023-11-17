@@ -4,7 +4,7 @@
 class Services {
   final String code;
   final String name;
-  final String price;
+  final double price;
 
   Services({
     required this.code,
@@ -12,11 +12,19 @@ class Services {
     required this.price,
   });
 
-  factory Services.fromJsonMap(Map<String, dynamic> json) => Services(
-        code: json["code"],
-        name: json["name"],
-        price: json["price"],
-      );
+  factory Services.fromJsonMap(Map<String, dynamic> map) {
+    return Services(
+      code: map['code'] ?? '',
+      name: map['name'] ?? '',
+      price: map['price'] != null ? double.tryParse(map['price']) ?? 0.0 : 0.0,
+    );
+  }
+
+  // factory Services.fromJsonMap(Map<String, dynamic> json) => Services(
+  //       code: json["code"],
+  //       name: json["name"],
+  //       price: json["price"],
+  //     );
 
   Map<String, dynamic> toJson() => {
         "code": code,
@@ -27,5 +35,4 @@ class Services {
   List<Services> servicesFromJsonList(List<dynamic> jsonList) {
     return jsonList.map((json) => Services.fromJsonMap(json)).toList();
   }
-  
 }
