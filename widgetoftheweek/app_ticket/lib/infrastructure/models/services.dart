@@ -12,7 +12,7 @@ class Services {
     required this.price,
   });
 
-  factory Services.fromJsonMap (Map<String, dynamic> json) => Services(
+  factory Services.fromJsonMap(Map<String, dynamic> json) => Services(
         code: json["code"],
         name: json["name"],
         price: json["price"],
@@ -23,4 +23,9 @@ class Services {
         "name": name,
         "price": price,
       };
+
+  List<Services> servicesFromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((json) => Services.fromJsonMap(json)).toList();
+  }
+  
 }

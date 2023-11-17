@@ -1,3 +1,4 @@
+import 'package:app_ticket/infrastructure/models/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
@@ -7,11 +8,26 @@ import 'dart:ui' as ui;
 part 'ticket_state.dart';
 
 class TicketCubit extends Cubit<TicketState> {
-  TicketCubit() : super(const TicketState());
+  TicketCubit()
+      : super(
+          TicketState(
+            selectedService: Services(
+              code: '',
+              name: '',
+              price: '',
+            ),
+          ),
+        );
 
   void onChangeCode(String value) {
     emit(state.copyWhith(
       code: value,
+    ));
+  }
+
+  void onSelectService(Services service) {
+    emit(state.copyWhith(
+      selectedService: service,
     ));
   }
 
@@ -42,8 +58,7 @@ class TicketCubit extends Cubit<TicketState> {
       );
     } catch (e) {
       // Error, emitir estado de error con mensaje
-      emit(const TicketCaptureError(
-          message: 'Failed to capture widget as image.'));
+      emit(TicketCaptureError(message: 'Failed to capture widget as image.'));
       // Mostrar SnackBar de error
       ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
         const SnackBar(

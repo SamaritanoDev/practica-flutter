@@ -1,5 +1,6 @@
 import 'package:app_ticket/pages/blocs/ticket/ticket_cubit.dart';
 import 'package:app_ticket/pages/home_page.dart';
+import 'package:app_ticket/widgets/form_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,9 +14,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(colorSchemeSeed: Colors.deepPurpleAccent),
       home: BlocProvider(
         create: (context) => TicketCubit(),
-        child: const HomePage(),
+        child: const FormCustom(),
       ),
     );
   }
