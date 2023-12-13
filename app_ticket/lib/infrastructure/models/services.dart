@@ -26,13 +26,13 @@ class Services {
   //       price: json["price"],
   //     );
 
-  Map<String, dynamic> toJson() => {
-        "code": code,
-        "name": name,
-        "price": price,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "code": code,
+  //       "name": name,
+  //       "price": price,
+  //     };
 
-  List<Services> servicesFromJsonList(List<dynamic> jsonList) {
-    return jsonList.map((json) => Services.fromJsonMap(json)).toList();
-  }
+  // List<Services> servicesFromJsonList(List<dynamic> jsonList) {
+  //   return jsonList.map((json) => Services.fromJsonMap(json)).toList();
+  // }
 }

@@ -96,7 +96,7 @@ class FormPage extends StatelessWidget {
                         readTicketCubit.onGenerateTicket(
                           nameController.text, // Nombre del cliente
                           DateTime.now()
-                              .toString(), // Fecha de emisión (ajusta esto según sea necesario)
+                              .toString(), // Fecha de emisión
                         );
 
                         // Obtener el estado actual después de onGenerateTicket

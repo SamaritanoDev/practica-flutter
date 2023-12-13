@@ -70,10 +70,6 @@ class TicketGenerated extends TicketState {
     required this.clientName,
     required this.dateOfIssue,
     required this.selectedService,
-
-    // Puedes agregar más propiedades según sea necesario
-    // Por ejemplo: final String selectedService;
-    // Y cualquier otra información que necesites mostrar en tu TicketPage
   }) : super.empty();
 
   @override

@@ -34,7 +34,7 @@ class TicketPage extends StatelessWidget {
               backgroundColor: Colors.purple,
               onPressed: () => readTicketCubit.captureWidget(globalKey),
               child: const Icon(
-                Icons.save,
+                Icons.share,
                 color: Colors.white,
               ),
             ),
