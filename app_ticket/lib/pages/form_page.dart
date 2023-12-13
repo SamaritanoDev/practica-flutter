@@ -95,24 +95,19 @@ class FormPage extends StatelessWidget {
                       onPressed: () {
                         readTicketCubit.onGenerateTicket(
                           nameController.text, // Nombre del cliente
+<<<<<<< Updated upstream
                           DateTime.now()
                               .toString(), // Fecha de emisión (ajusta esto según sea necesario)
+=======
+                          DateTime.now().toString(), // Fecha de emisión
+>>>>>>> Stashed changes
                         );
 
                         // Obtener el estado actual después de onGenerateTicket
                         final currentState = readTicketCubit.state;
 
                         // Verificar si el estado actual es TicketGenerated
-                        if (currentState is TicketGenerated) {
-                          print('Client Name: ${currentState.clientName}');
-                          print(
-                              'Code services: ${currentState.selectedService.code}');
-                          print(
-                              'Services: ${currentState.selectedService.name}');
-                          print('Date of Issue: ${currentState.dateOfIssue}');
-                          print(
-                              'Total amount: \$${currentState.selectedService.price}');
-                        }
+                        if (currentState is TicketGenerated) {}
 
                         // Navegar a TicketPage
                         Navigator.of(context).push(
