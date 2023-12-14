@@ -1,8 +1,8 @@
-import 'package:app_ticket/pages/blocs/ticket/ticket_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:app_ticket/pages/blocs/ticket/ticket_cubit.dart';
 
 class TicketPage extends StatelessWidget {
   final TicketState ticketState;
@@ -34,7 +34,7 @@ class TicketPage extends StatelessWidget {
               backgroundColor: Colors.purple,
               onPressed: () => readTicketCubit.captureWidget(globalKey),
               child: const Icon(
-                Icons.save,
+                Icons.share,
                 color: Colors.white,
               ),
             ),
@@ -46,6 +46,7 @@ class TicketPage extends StatelessWidget {
                   height: 500,
                   width: 350,
                   decoration: BoxDecoration(
+                    color: Colors.white,
                     border: Border.all(
                       color: const Color(0xff602E9E),
                     ),

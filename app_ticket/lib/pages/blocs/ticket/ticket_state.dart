@@ -47,7 +47,8 @@ class TicketLoading extends TicketState {
 
 // Estado para indicar que la operación de captura fue exitosa
 class TicketCaptured extends TicketState {
-  TicketCaptured() : super.empty();
+  final String? imagePath;
+  TicketCaptured(this.imagePath) : super.empty();
 }
 
 // Estado para indicar un error durante la operación de captura
@@ -70,10 +71,6 @@ class TicketGenerated extends TicketState {
     required this.clientName,
     required this.dateOfIssue,
     required this.selectedService,
-
-    // Puedes agregar más propiedades según sea necesario
-    // Por ejemplo: final String selectedService;
-    // Y cualquier otra información que necesites mostrar en tu TicketPage
   }) : super.empty();
 
   @override

@@ -1,7 +1,8 @@
-import 'package:app_ticket/pages/blocs/ticket/ticket_cubit.dart';
 import 'package:app_ticket/pages/form_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:app_ticket/pages/blocs/ticket/ticket_cubit.dart';
+
 
 void main() {
   runApp(const MainApp());

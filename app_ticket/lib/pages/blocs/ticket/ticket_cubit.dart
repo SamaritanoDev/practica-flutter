@@ -6,8 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:ui' as ui;
-
-import 'package:share_plus/share_plus.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_extend/share_extend.dart';
 part 'ticket_state.dart';
 
 class TicketCubit extends Cubit<TicketState> {
@@ -34,6 +34,7 @@ class TicketCubit extends Cubit<TicketState> {
       dateOfIssue: dateOfIssue,
       selectedService: state.selectedService,
     ));
+    // Resto de tu lógica para capturar y guardar la imagen
   }
 
   Future<void> captureWidget(GlobalKey globalKey) async {
@@ -42,19 +43,19 @@ class TicketCubit extends Cubit<TicketState> {
     try {
       final RenderRepaintBoundary boundary =
           globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      final ui.Image image = await boundary.toImage(
-          pixelRatio: 3.0); // Ajusta el pixelRatio según sea necesario
+      final ui.Image image = await boundary.toImage(pixelRatio: 2.0);
 
       final ByteData? byteData =
           await image.toByteData(format: ui.ImageByteFormat.png);
       final Uint8List pngBytes = byteData!.buffer.asUint8List();
 
-      // Guarda la imagen en la galería y espera a que se complete
       final String? imagePath = await saveMyImage(pngBytes);
 
-      if (imagePath != null && imagePath.isNotEmpty) {
-        // Éxito, emitir estado de éxito
-        emit(TicketCaptured());
+      if (imagePath != null) {
+        emit(TicketCaptured("La ruta del archivo es $imagePath"));
+
+        print("ruta de la imagen: {$imagePath}");
+
         // Mostrar SnackBar de éxito
         ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
           const SnackBar(
@@ -64,22 +65,23 @@ class TicketCubit extends Cubit<TicketState> {
         );
 
         // Comparte la imagen guardada
-        await shareImage(imagePath, globalKey);
+        await shareMyImage(imagePath);
+
+
       } else {
-        // Emite un evento de error
-        emit(TicketCaptureError(message: 'Error saving image to gallery.'));
-        // Mostrar SnackBar de error
+        // Manejar caso en el que no se obtuvo la ruta del archivo
+        emit(TicketCaptureError(message: 'imagePath equal  is null.'));
         ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.red,
-            content: Text('Error saving image to gallery.'),
+            content: Text('imagePath equal  is null.'),
           ),
         );
       }
     } catch (e) {
       // Error, emitir estado de error con mensaje
-      emit(TicketCaptureError(
-          message: 'Failed to capture widget as image. Error: $e'));
+      print("Error: {$e}");
+      emit(TicketCaptureError(message: 'Failed to capture widget as image.'));
       // Mostrar SnackBar de error
       ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
         const SnackBar(
@@ -92,43 +94,46 @@ class TicketCubit extends Cubit<TicketState> {
 
   Future<String?> saveMyImage(Uint8List uint8List) async {
     try {
-      final Map<dynamic, dynamic>? result =
-          await ImageGallerySaver.saveImage(uint8List);
+      // Obtener el directorio de la galería
+      final galleryDir = await getExternalStorageDirectory();
+
+      if (galleryDir == null) {
+        emit(TicketCaptureError(message: 'Error getting gallery directory.'));
+        return null;
+      }
+
+      // Guardar la imagen en el directorio de la galería
+      final String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      final String localPath = '${galleryDir.path}/$fileName.png';
+      await File(localPath).writeAsBytes(uint8List);
+
+      // Guardar también en la galería
+      final result = await ImageGallerySaver.saveFile(localPath);
 
       if (result != null && result.containsKey('filePath')) {
-        final String imagePath = result['filePath'];
-        return imagePath;
+        // Se obtiene la ruta del archivo en la galería
+        final String galleryPath = result['filePath'];
+        print("Ruta de la imagen en la galería: $galleryPath");
+        return galleryPath;
       } else {
-        // Si 'filePath' no está presente, guarda la imagen en el directorio temporal
-        final String fileName =
-            DateTime.now().millisecondsSinceEpoch.toString();
-        final String tempPath = '${Directory.systemTemp.path}/$fileName.png';
-
-        File(tempPath).writeAsBytesSync(uint8List);
-
-        return tempPath;
+        emit(TicketCaptureError(message: 'Error saving image to gallery.'));
+        return null;
       }
     } catch (e) {
-      print('Error saving image to gallery: $e');
-      emit(TicketCaptureError(message: 'Error saving image to gallery.'));
+      print("Error2: $e");
+      emit(TicketCaptureError(message: 'Error saving image: $e'));
       return null;
     }
   }
 
-  Future<void> shareImage(String imagePath, GlobalKey globalKey) async {
-    // Verifica si el archivo existe antes de compartirlo
-    if (File(imagePath).existsSync()) {
-      // Comparte la imagen utilizando share_plus
-      await Share.shareXFiles([XFile(imagePath)]);
-    } else {
-      // Mostrar un mensaje de error si el archivo no existe
-      emit(TicketCaptureError(message: 'Image file does not exist.'));
-      ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.red,
-          content: Text('Image file does not exist.'),
-        ),
-      );
+  Future<void> shareMyImage(String imagePath) async {
+    try {
+      // Compartir la imagen usando share_extend
+      ShareExtend.share("my imagen", imagePath);
+    } catch (e) {
+      print("Error al compartir la imagen: $e");
+      emit(TicketCaptureError(message: 'Error al compartir la imagen: $e'));
+      // Puedes agregar un SnackBar de error si lo deseas
     }
   }
 }
