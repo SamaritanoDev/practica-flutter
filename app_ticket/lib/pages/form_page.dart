@@ -10,6 +10,8 @@ class FormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+
     final readTicketCubit = context.read<TicketCubit>();
     final textTheme = Theme.of(context).textTheme;
     TextEditingController codeController = TextEditingController();
@@ -53,17 +55,19 @@ class FormPage extends StatelessWidget {
                               child: Text(service.name),
                             );
                           }).toList(),
-                          onChanged: (Services? newSelectedService) {
-                            if (newSelectedService != null) {
+                          onChanged: (Services? newselectedService) {
+                            if (newselectedService != null) {
                               readTicketCubit
-                                  .onSelectService(newSelectedService);
-                              codeController.text = newSelectedService.code;
+                                  .onSelectService(newselectedService);
+                              codeController.text = newselectedService.code;
                             }
                           },
                         )
-                      : Text('No services available',
+                      : Text(
+                          'No services available',
                           style: textTheme.titleLarge
-                              ?.copyWith(color: Colors.red)),
+                              ?.copyWith(color: color.error),
+                        ),
                   const SizedBox(height: 20),
                   TextFormField(
                     controller: codeController,
@@ -85,7 +89,7 @@ class FormPage extends StatelessWidget {
                         // ignore: unnecessary_null_comparison
                         'Total amount: \$${state.selectedService != null ? state.selectedService.price : "Select a service"}',
                         style: textTheme.titleLarge
-                            ?.copyWith(color: Colors.deepPurpleAccent),
+                            ?.copyWith(color: color.primary),
                       ),
                     ],
                   ),
@@ -93,31 +97,29 @@ class FormPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          readTicketCubit.onGenerateTicket(
-                            nameController.text, // Nombre del cliente
-                            DateTime.now().toString(), // Fecha de emisión
-                          );
+                      FilledButton(
+                          onPressed: () {
+                            readTicketCubit.onGenerateTicket(
+                              nameController.text,
+                              DateTime.now().toString(),
+                            );
+                            // Obtener el estado actual después de onGenerateTicket
+                            final currentState = readTicketCubit.state;
 
-                          // Obtener el estado actual después de onGenerateTicket
-                          final currentState = readTicketCubit.state;
+                            // Verificar si el estado actual es TicketGenerated
+                            if (currentState is TicketGenerated) {}
 
-                          // Verificar si el estado actual es TicketGenerated
-                          if (currentState is TicketGenerated) {}
-
-                          // Navegar a TicketPage
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => BlocProvider.value(
-                                value: readTicketCubit,
-                                child: TicketPage(ticketState: currentState),
+                            // Navegar a TicketPage
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => BlocProvider.value(
+                                  value: readTicketCubit,
+                                  child: TicketPage(ticketState: currentState),
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        child: const Text('Generated'),
-                      ),
+                            );
+                          },
+                          child: const Text('Generated')),
                     ],
                   )
                 ],

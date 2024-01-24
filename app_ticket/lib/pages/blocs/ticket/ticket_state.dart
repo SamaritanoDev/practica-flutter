@@ -64,7 +64,6 @@ class TicketCaptureError extends TicketState {
 class TicketGenerated extends TicketState {
   final String clientName;
   final String dateOfIssue;
-  @override
   final Services selectedService;
 
   TicketGenerated({

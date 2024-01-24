@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:app_ticket/infrastructure/models/services.dart';
+import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:ui' as ui;
 import 'package:path_provider/path_provider.dart';
-import 'package:share_extend/share_extend.dart';
 part 'ticket_state.dart';
 
 class TicketCubit extends Cubit<TicketState> {
@@ -34,11 +34,10 @@ class TicketCubit extends Cubit<TicketState> {
       dateOfIssue: dateOfIssue,
       selectedService: state.selectedService,
     ));
-    // Resto de tu lógica para capturar y guardar la imagen
   }
 
   Future<void> captureWidget(GlobalKey globalKey) async {
-    emit(TicketLoading()); // Estado de carga antes de la operación
+    emit(TicketLoading());
 
     try {
       final RenderRepaintBoundary boundary =
@@ -54,23 +53,19 @@ class TicketCubit extends Cubit<TicketState> {
       if (imagePath != null) {
         emit(TicketCaptured("La ruta del archivo es $imagePath"));
 
-        print("ruta de la imagen: {$imagePath}");
-
-        // Mostrar SnackBar de éxito
         ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
-          const SnackBar(
+           SnackBar(
             backgroundColor: Colors.green,
-            content: Text('Ticket image saved to device.'),
+            content: Text('Ticket image saved to device. And it was saved in $imagePath'),
           ),
         );
 
-        // Comparte la imagen guardada
-        await shareMyImage(imagePath);
+        await shareImage(globalKey, pngBytes, state.selectedService.name);
 
 
       } else {
-        // Manejar caso en el que no se obtuvo la ruta del archivo
         emit(TicketCaptureError(message: 'imagePath equal  is null.'));
+
         ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.red,
@@ -79,14 +74,12 @@ class TicketCubit extends Cubit<TicketState> {
         );
       }
     } catch (e) {
-      // Error, emitir estado de error con mensaje
-      print("Error: {$e}");
       emit(TicketCaptureError(message: 'Failed to capture widget as image.'));
-      // Mostrar SnackBar de error
+
       ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
-        const SnackBar(
+         SnackBar(
           backgroundColor: Colors.red,
-          content: Text('Failed to capture widget as image.'),
+          content: Text('Failed to capture widget as image: $e'),
         ),
       );
     }
@@ -109,31 +102,41 @@ class TicketCubit extends Cubit<TicketState> {
 
       // Guardar también en la galería
       final result = await ImageGallerySaver.saveFile(localPath);
-
       if (result != null && result.containsKey('filePath')) {
+
         // Se obtiene la ruta del archivo en la galería
         final String galleryPath = result['filePath'];
-        print("Ruta de la imagen en la galería: $galleryPath");
         return galleryPath;
+
       } else {
-        emit(TicketCaptureError(message: 'Error saving image to gallery.'));
+        emit(TicketCaptureError(message: 'Image is null.'));
         return null;
       }
     } catch (e) {
-      print("Error2: $e");
-      emit(TicketCaptureError(message: 'Error saving image: $e'));
+      emit(TicketCaptureError(message: 'Error saving image to gallery: $e'));
       return null;
     }
   }
 
-  Future<void> shareMyImage(String imagePath) async {
+  Future<void> shareImage(GlobalKey globalKey, Uint8List pngBytes, String clientName) async {
     try {
-      // Compartir la imagen usando share_extend
-      ShareExtend.share("my imagen", imagePath);
+      final String fileName = '${clientName}_ticket.png';
+      await Share.file("Ticket", fileName, pngBytes, 'images/png');
+
+      ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.green,
+          content: Text('Ticket sent.'),
+        ),
+      );
     } catch (e) {
-      print("Error al compartir la imagen: $e");
-      emit(TicketCaptureError(message: 'Error al compartir la imagen: $e'));
-      // Puedes agregar un SnackBar de error si lo deseas
+      emit(TicketCaptureError(message: 'Error sharing image: $e'));
+      ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text('Error generated ticket: $e'),
+        ),
+      );
     }
   }
 }
