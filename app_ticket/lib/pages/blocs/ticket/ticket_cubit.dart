@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:app_ticket/infrastructure/models/services.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/rendering.dart';
@@ -70,7 +71,7 @@ class TicketCubit extends Cubit<TicketState> {
 
       } else {
         // Manejar caso en el que no se obtuvo la ruta del archivo
-        emit(TicketCaptureError(message: 'imagePath equal  is null.'));
+        emit(TicketCaptureError(error: 'imagePath equal  is null.'));
         ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.red,
@@ -81,7 +82,7 @@ class TicketCubit extends Cubit<TicketState> {
     } catch (e) {
       // Error, emitir estado de error con mensaje
       print("Error: {$e}");
-      emit(TicketCaptureError(message: 'Failed to capture widget as image.'));
+      emit(TicketCaptureError(error: 'Failed to capture widget as image.'));
       // Mostrar SnackBar de error
       ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(
         const SnackBar(
@@ -98,7 +99,7 @@ class TicketCubit extends Cubit<TicketState> {
       final galleryDir = await getExternalStorageDirectory();
 
       if (galleryDir == null) {
-        emit(TicketCaptureError(message: 'Error getting gallery directory.'));
+        emit(TicketCaptureError(error: 'Error getting gallery directory.'));
         return null;
       }
 
@@ -116,12 +117,12 @@ class TicketCubit extends Cubit<TicketState> {
         print("Ruta de la imagen en la galería: $galleryPath");
         return galleryPath;
       } else {
-        emit(TicketCaptureError(message: 'Error saving image to gallery.'));
+        emit(TicketCaptureError(error: 'Error saving image to gallery.'));
         return null;
       }
     } catch (e) {
       print("Error2: $e");
-      emit(TicketCaptureError(message: 'Error saving image: $e'));
+      emit(TicketCaptureError(error: 'Error saving image: $e'));
       return null;
     }
   }
@@ -132,7 +133,7 @@ class TicketCubit extends Cubit<TicketState> {
       ShareExtend.share("my imagen", imagePath);
     } catch (e) {
       print("Error al compartir la imagen: $e");
-      emit(TicketCaptureError(message: 'Error al compartir la imagen: $e'));
+      emit(TicketCaptureError(error: 'Error al compartir la imagen: $e'));
       // Puedes agregar un SnackBar de error si lo deseas
     }
   }

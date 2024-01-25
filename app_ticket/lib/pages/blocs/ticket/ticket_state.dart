@@ -1,6 +1,6 @@
 part of 'ticket_cubit.dart';
 
-class TicketState {
+class TicketState extends Equatable {
   final String code;
   final String name;
   final double price;
@@ -37,7 +37,8 @@ class TicketState {
         selectedService: selectedService ?? this.selectedService,
       );
 
-  List<Object> get props => [code, name, price, selectedService];
+  @override
+  List<Object?> get props => [code, name, price, selectedService];
 }
 
 // Estado de carga (loading) antes de la operación
@@ -53,12 +54,10 @@ class TicketCaptured extends TicketState {
 
 // Estado para indicar un error durante la operación de captura
 class TicketCaptureError extends TicketState {
-  final String message;
+  final Object error;
 
-  TicketCaptureError({required this.message}) : super.empty();
+  TicketCaptureError({required this.error}) : super.empty();
 
-  @override
-  List<Object> get props => [message];
 }
 
 class TicketGenerated extends TicketState {
@@ -67,12 +66,12 @@ class TicketGenerated extends TicketState {
   @override
   final Services selectedService;
 
-  TicketGenerated({
+  const TicketGenerated({
     required this.clientName,
     required this.dateOfIssue,
     required this.selectedService,
-  }) : super.empty();
+  }) : super(selectedService: selectedService);
 
   @override
-  List<Object> get props => [clientName, dateOfIssue, selectedService];
+  List<Object?> get props => [clientName, dateOfIssue, selectedService];
 }

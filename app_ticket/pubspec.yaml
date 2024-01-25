@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.1.5 <4.0.0'
 
 dependencies:
+  equatable: ^2.0.5
   file_cache_provider: ^1.0.0
   flutter:
     sdk: flutter
@@ -15,8 +16,8 @@ dependencies:
   image_gallery_saver: ^2.0.3
   intl: ^0.18.1
   path_provider: ^2.1.1
-  url_launcher: ^6.2.2
   share_extend: ^2.0.0
+  url_launcher: ^6.2.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
