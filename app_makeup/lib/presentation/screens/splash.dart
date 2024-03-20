@@ -16,46 +16,49 @@ class SplashScreen extends StatelessWidget {
         children: [
           const WallpaperGradient(),
           const CircleMedia(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 150),
-              Text(
-                'Choose',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontFamily: 'sofiaRegular',
-                      fontSize: 60,
-                    ),
-              ),
-              SizedBox(
-                height: 100,
-                child: Image.asset(
-                  logopath,
-                  fit: BoxFit.cover,
+          Container(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: 150),
+                Text(
+                  'Choose',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: 'sofiaRegular',
+                        fontSize: 60,
+                      ),
                 ),
-              ),
-              Text(
-                'outfit',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontFamily: 'sofiaRegular',
-                      fontSize: 60,
-                    ),
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              Column(
-                children: [
-                  const _ImagesStack(),
-                  CustomTextButton(
-                    onPressed: () {
-                      GoRouter.of(context).go('/home_screen');
-                    },
+                SizedBox(
+                  height: 100,
+                  child: Image.asset(
+                    logopath,
+                    fit: BoxFit.cover,
                   ),
-                ],
-              )
-            ],
+                ),
+                Text(
+                  'outfit',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontFamily: 'sofiaRegular',
+                        fontSize: 60,
+                      ),
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
+                Column(
+                  children: [
+                    const _ImagesStack(),
+                    CustomTextButton(
+                      onPressed: () {
+                        GoRouter.of(context).go('/home_screen');
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

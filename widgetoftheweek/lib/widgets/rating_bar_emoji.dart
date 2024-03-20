@@ -8,6 +8,7 @@ class RatingBarEmoji extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: RatingBar.builder(
+        unratedColor: Colors.white,
         initialRating: 3,
         itemCount: 5,
         itemBuilder: (context, index) {

@@ -29,8 +29,7 @@ class _CustomCardState extends State<CustomCard> {
         valueListenable: userBloc.user,
         builder: (context, user, _) {
           if (user != null) {
-            return Container(
-              padding: const EdgeInsets.all(10),
+            return SizedBox(
               height: 200,
               child: Card(
                 child: Column(

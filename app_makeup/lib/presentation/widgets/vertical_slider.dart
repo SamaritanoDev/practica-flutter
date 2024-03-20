@@ -29,7 +29,7 @@ class _VerticalSliderState extends State<VerticalSlider> {
             children: [
               Container(
                 width: double.infinity,
-                height: 500,
+                height: 520,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(8),
                 child: Image.network(

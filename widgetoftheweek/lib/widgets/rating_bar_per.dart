@@ -6,55 +6,54 @@ class RaBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.purpleAccent[100],
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RatingBar(
-              minRating: 1,
-              maxRating: 5,
-              initialRating: 3,
-              allowHalfRating: true,
-              ratingWidget: RatingWidget(
-                  full: const Icon(
-                    Icons.star,
-                    color: Colors.cyanAccent,
-                  ),
-                  half: const Icon(
-                    Icons.star,
-                    color: Colors.cyan,
-                  ),
-                  empty: const Icon(
-                    Icons.star,
-                    color: Colors.white,
-                  )),
-              onRatingUpdate: (rating) {
-                print(rating);
-              },
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            RatingBar.builder(
-              glow: true,
-              initialRating: 3,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => const Icon(
-                Icons.heart_broken_rounded,
-                color: Colors.pink,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RatingBar(
+            minRating: 1,
+            maxRating: 5,
+            initialRating: 3,
+            allowHalfRating: true,
+            ratingWidget: RatingWidget(
+              full: const Icon(
+                Icons.star,
+                color: Colors.cyanAccent,
               ),
-              onRatingUpdate: (rating) {
-                print(rating);
-              },
-            )
-          ],
-        ),
+              half: const Icon(
+                Icons.star,
+                color: Colors.cyan,
+              ),
+              empty: const Icon(
+                Icons.star,
+                color: Colors.white,
+              ),
+            ),
+            onRatingUpdate: (rating) {
+              print(rating);
+            },
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          RatingBar.builder(
+            unratedColor: Colors.white,
+            glow: false,
+            initialRating: 3,
+            minRating: 1,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+            itemBuilder: (context, _) => const Icon(
+              Icons.heart_broken_rounded,
+              color: Colors.pink,
+            ),
+            onRatingUpdate: (rating) {
+              print(rating);
+            },
+          )
+        ],
       ),
     );
   }

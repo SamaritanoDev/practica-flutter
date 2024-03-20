@@ -18,7 +18,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       home: const Scaffold(
-        body: RatingBarEmoji(),
+        backgroundColor: Colors.black,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RatingBarEmoji(),
+            RaBar(),
+          ],
+        ),
       ),
     );
   }
